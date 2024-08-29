@@ -6,16 +6,23 @@ def calculateParameter(l,w)
     return 2*(l+w)
 end
 
+def askInput()
+    return gets.chomp.to_f()
+end
+
+def printOutput(l,w)
+    puts "The area of rantangle is #{calculateArea(l,w)}\nThe parameter of rantangle is #{calculateParameter(l,w)}"
+end
+
 def main()
 
     print "Enter lenght of Rectangle: "
-    lenght = gets.chomp.to_f()
+    lenght = askInput()
 
     print "Enter width of Rectangle: "
-    width = gets.chomp.to_f()
+    width = askInput()
 
-    puts "The area of rantangle is #{calculateArea(lenght,width)}"
-    puts "The parameter of rantangle is #{calculateParameter(lenght,width)}"
+    printOutput(lenght,width)
 end
 
 main()
