@@ -1,0 +1,18 @@
+Pseudocode for Returning the lable for the letter
+    1. Read title, first name, last name, house or unit address, street name, suburh, postcode
+    2. Store thses input into each variables
+    3. Return the 1 string literal in the format of letter by comnbing the variables
+
+Pseudocode for returning the message to be send
+    1. Read subject line, content of message
+    2. Store these input into each variables
+    3. Return the 1 string literal in the format of letter by combing the variables
+
+Pseudocode for printing label and message
+    1. Accept label and message as arguments
+    2. Return the label and message
+
+Pseudocode for main function
+    1. Call read_labelinput function and return value is assigned to "label" variable
+    2. Call read_message function and return value is assigned to "message" variable
+    3. Call print_labelandmessage function with the arguments variables- "label" and "message"
