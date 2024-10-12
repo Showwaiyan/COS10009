@@ -28,7 +28,7 @@ class Scenario < Gosu::Window
 
   def initialize
     super(WIDTH, HEIGHT)
-    self.caption = "L-System Tree"
+    self.caption = "Scenario"
 
     @tree = LSystemTree.new(AXIOM, RULES)
     @tree.generate(ITERATIONS)
