@@ -185,7 +185,7 @@ class MusicPlayerMain < Gosu::Window
 
   def playTrack(track, album)
   	 # complete the missing code
-  			@song = Gosu::Song.new(album.tracks[track].location)
+  			@song = Gosu::Song.new("songs/nevergonnagiveyouup.mp3")
   			@song.play(false)
     # Uncomment the following and indent correctly:
   	#	end
@@ -246,6 +246,7 @@ class MusicPlayerMain < Gosu::Window
 				if area_clicked(TrackLeftX, 40, WIDTH, HEIGHT) && !@current_album.nil? && @current_album.tracks.length > 0
 					index = (mouse_y - 40) / 40	
 					@current_track = @current_album.tracks[index] if index < @current_album.tracks.length
+					playTrack(@current_track, @current_album) if !@current_track.nil?
 				end
 	  end
 	end
