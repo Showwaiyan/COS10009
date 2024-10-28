@@ -230,24 +230,24 @@ class MusicPlayerMain < Gosu::Window
 			when Gosu::KB_ESCAPE
 				close
 	    when Gosu::MsLeft
-	    	# What should happen here?
-				# Album Clicked
-				if area_clicked(10, 20, 230, 240)
-					@current_album = @albums[0]
-				elsif area_clicked(240, 20, 460, 240)
-					@current_album = @albums[1]
-				elsif area_clicked(10, 250, 230, 470)
-					@current_album = @albums[2]
-				elsif area_clicked(240, 250, 460, 470)
-					@current_album = @albums[3]
-				end
+		# What should happen here?
+			# Album Clicked
+			if area_clicked(10, 20, 230, 240)
+				@current_album = @albums[0]
+			elsif area_clicked(240, 20, 460, 240)
+				@current_album = @albums[1]
+			elsif area_clicked(10, 250, 230, 470)
+				@current_album = @albums[2]
+			elsif area_clicked(240, 250, 460, 470)
+				@current_album = @albums[3]
+			end
 
-				# Track Clicked
-				if area_clicked(TrackLeftX, 40, WIDTH, HEIGHT) && !@current_album.nil? && @current_album.tracks.length > 0
-					index = (mouse_y - 40) / 40	
-					@current_track = @current_album.tracks[index] if index < @current_album.tracks.length
-					playTrack(@current_track, @current_album) if !@current_track.nil?
-				end
+			# Track Clicked
+			if area_clicked(TrackLeftX, 40, WIDTH, HEIGHT) && !@current_album.nil? && @current_album.tracks.length > 0
+				index = (mouse_y - 40) / 40	
+				@current_track = @current_album.tracks[index] if index < @current_album.tracks.length
+				playTrack(@current_track, @current_album) if !@current_track.nil?
+			end
 	  end
 	end
 
