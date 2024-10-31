@@ -35,16 +35,16 @@ class ArtWork
 end
 
 class Album
-	attr_accessor :artist, :title, :record_label, :genre, :tracks, :artwork
+	attr_accessor :artist, :title, :record_label, :artwork, :genre, :tracks
 
-	def initialize (artist, title, record_label, genre, tracks)
+	def initialize (artist, title, record_label, artwork, genre, tracks)
 		# insert lines here
 		@artist = artist
 		@title = title
     @record_label = record_label
 		@genre = genre
 		@tracks = tracks
-		@artwork = ArtWork.new(("artwork/"+artist.downcase + title.downcase + ".jpg").gsub(/\s+/, ""))
+		@artwork = artwork
 	end
 end
 
@@ -97,10 +97,11 @@ class MusicPlayerMain < Gosu::Window
 		album_artist = music_file.gets()
 		album_title = music_file.gets()
 		album_record_label = music_file.gets()
+		album_artwork = ArtWork.new(music_file.gets().chomp);
 		album_genre = music_file.gets().to_i
 		tracks = read_tracks(music_file)
 	
-		album = Album.new(album_artist, album_title, album_record_label, album_genre, tracks)
+		album = Album.new(album_artist, album_title, album_record_label, album_artwork, album_genre, tracks)
 		return album
 	end
 
@@ -180,13 +181,17 @@ class MusicPlayerMain < Gosu::Window
 		end
 	end
 
+	def draw_current_track(track)
+		@track_font.draw_text("Now Playing: "+@current_track.title, TrackLeftX, 450, ZOrder::UI, 1.0, 1.0, Gosu::Color::WHITE)
+	end
+
 
   # Takes a track index and an Album and plays the Track from the Album
 
   def playTrack(track, album)
   	 # complete the missing code
-  			@song = Gosu::Song.new("songs/nevergonnagiveyouup.mp3")
-  			@song.play(false)
+  	@song = Gosu::Song.new(track.file_location)
+  	@song.play(false)
     # Uncomment the following and indent correctly:
   	#	end
   	# end
@@ -216,6 +221,7 @@ class MusicPlayerMain < Gosu::Window
 		draw_background
 		draw_albums(@albums)
 		draw_tracks(@current_album)
+		draw_current_track(@current_track) if !@current_track.nil?
 	end
 
  	def needs_cursor?; true; end
