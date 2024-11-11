@@ -206,7 +206,7 @@ def select_track_to_play(tracks,album_title)
     end
     puts "Playing Track: " + tracks[track_id - 1].title + " from album: " + album_title
     puts "***********************************"
-    sleep(2)
+    sleep(5)
   when 2
     return # instance of return to main menu
   end
