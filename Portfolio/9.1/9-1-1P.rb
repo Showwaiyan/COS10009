@@ -138,7 +138,7 @@ def display_albums(albums)
     puts "3. Jazz"
     puts "4. Rock"
     puts "5. Exit"
-    genre_choice = read_integer_in_range("Please enter your choice:", 1, 4)
+    genre_choice = read_integer_in_range("Please enter your choice:", 1, 5)
 
     return if (genre_choice == 5)# intance of return to main menu
 
@@ -187,7 +187,7 @@ end
 
 def select_track_to_play(tracks,album_title)
   puts "1. Select Track to play by ID"
-  puts "2. Exist"
+  puts "2. Exit"
   choice = read_integer_in_range("Please enter your choice:", 1, 2)
 
   puts "***********************************"
@@ -206,6 +206,7 @@ def select_track_to_play(tracks,album_title)
     end
     puts "Playing Track: " + tracks[track_id - 1].title + " from album: " + album_title
     puts "***********************************"
+    sleep(2)
   when 2
     return # instance of return to main menu
   end

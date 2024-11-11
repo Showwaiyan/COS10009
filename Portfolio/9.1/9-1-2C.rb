@@ -189,7 +189,7 @@ end
 
 def select_track_to_play(tracks,album_title)
   puts "1. Select Track to play by ID"
-  puts "2. Exist"
+  puts "2. Exit"
   choice = read_integer_in_range("Please enter your choice:", 1, 2)
 
   puts "***********************************"
@@ -230,7 +230,7 @@ def add_an_album(albums)
   puts "2. Classic"
   puts "3. Jazz"
   puts "4. Rock"
-  genre_choice = read_integer_in_range("Please enter your choice:", 1, 4)
+  genre_choice = read_integer_in_range("Please enter your choice:", 1, 5)
   tracks = read_tracks_from_user
 
   album = Album.new(album_id, album_artist, album_title, album_record_label, genre_choice, tracks)
