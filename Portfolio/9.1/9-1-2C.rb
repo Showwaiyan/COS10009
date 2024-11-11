@@ -25,13 +25,12 @@ class Album
 end
 
 class Track
-	attr_accessor :id, :title, :file_location, :duration
+	attr_accessor :id, :title, :file_location
 
-	def initialize (id, name, location, duration)
+	def initialize (id, name, location)
     @id = id
 		@title = name
 		@file_location = location
-    @duration = duration
 	end
 end
 
@@ -40,8 +39,8 @@ def read_track(music_file, id)
   track_id = id + 1
   track_title = music_file.gets().chomp
   track_file_location = music_file.gets().chomp
-  track_duration = music_file.gets().chomp
-	return Track.new(track_id, track_title, track_file_location, track_duration);
+  # track_duration = music_file.gets().chomp
+	return Track.new(track_id, track_title, track_file_location);
 end
 
 def read_tracks(music_file)
@@ -99,7 +98,7 @@ def print_track(track)
   puts "Track ID: " + track.id.to_s
   puts "Track Title: " + track.title
   puts "Track File Location: " + track.file_location
-  puts "Track Duration: " + track.duration
+  # puts "Track Duration: " + track.duration
   puts "\n"
 end
 
