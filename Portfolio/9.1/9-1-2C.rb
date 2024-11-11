@@ -207,6 +207,7 @@ def select_track_to_play(tracks,album_title)
       end
     end
     puts "Playing Track: " + tracks[track_id - 1].title + " from album: " + album_title
+    sleep(5)
     puts "***********************************"
   when 2
     return # instance of return to main menu
@@ -294,7 +295,7 @@ def main()
       # read the album file if file exists
       read_in_ablums(music_file, albums)
     when 2
-      if albums.nil?
+      if albums.empty?
         # in case user enter this option without reading the file
         puts "!!!!!!!!!!!!!!!!!!!!!!!!"
         puts "No Albums are not loaded yet, Please go to Read in Alnums section!" 
@@ -303,7 +304,7 @@ def main()
       end
       display_albums(albums)
     when 3
-      if albums.nil?
+      if albums.empty?
         # in case user enter this option without reading the file
         puts "!!!!!!!!!!!!!!!!!!!!!!!!"
         puts "No Albums are not loaded yet, Please go to Read in Alnums section!" 

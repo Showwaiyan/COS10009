@@ -213,7 +213,7 @@ end
 
 def main()
 	music_file = nil
-  albums = nil
+  albums = []
 
   finished = false
   begin
@@ -245,7 +245,7 @@ def main()
       # read the album file if file exists
       albums = read_in_ablums(music_file)
     when 2
-      if albums.nil?
+      if albums.empty?
         # in case user enter this option without reading the file
         puts "!!!!!!!!!!!!!!!!!!!!!!!!"
         puts "No Albums are not loaded yet, Please go to Read in Alnums section!" 
@@ -254,7 +254,7 @@ def main()
       end
       display_albums(albums)
     when 3
-      if albums.nil?
+      if albums.empty?
         # in case user enter this option without reading the file
         puts "!!!!!!!!!!!!!!!!!!!!!!!!"
         puts "No Albums are not loaded yet, Please go to Read in Alnums section!" 
