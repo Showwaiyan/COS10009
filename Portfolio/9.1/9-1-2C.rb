@@ -140,7 +140,7 @@ def display_albums(albums)
     puts "3. Jazz"
     puts "4. Rock"
     puts "5. Exit"
-    genre_choice = read_integer_in_range("Please enter your choice:", 1, 4)
+    genre_choice = read_integer_in_range("Please enter your choice:", 1, 5)
 
     return if (genre_choice == 5)# intance of return to main menu
 
@@ -230,7 +230,7 @@ def add_an_album(albums)
   puts "2. Classic"
   puts "3. Jazz"
   puts "4. Rock"
-  genre_choice = read_integer_in_range("Please enter your choice:", 1, 5)
+  genre_choice = read_integer_in_range("Please enter your choice:", 1, 4)
   tracks = read_tracks_from_user
 
   album = Album.new(album_id, album_artist, album_title, album_record_label, genre_choice, tracks)
