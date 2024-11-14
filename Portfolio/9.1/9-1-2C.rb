@@ -249,8 +249,7 @@ def read_tracks_from_user()
     track_id = i + 1
     track_title = read_string("Enter a name for new track:")
     track_file_location = read_string("Please a location for new track file:")
-    track_duration = 0.to_s # making defualt duration to 0
-    track = Track.new(track_id, track_title, track_file_location, track_duration)
+    track = Track.new(track_id, track_title, track_file_location)
     tracks.append(track)
     i += 1
   end
