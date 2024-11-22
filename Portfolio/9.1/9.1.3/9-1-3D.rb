@@ -251,6 +251,12 @@ class MusicPlayerMain < Gosu::Window
 				# Track Clicked
 				if area_clicked(TrackLeftX, 40, WIDTH, HEIGHT) && !@current_album.nil? && @current_album.tracks.length > 0
 					index = (mouse_y - 40) / 40	
+					if @current_album.tracks[index] == @current_track
+						# Stop the song
+						@song.stop
+						@current_track = nil
+						return
+					end
 					@current_track = @current_album.tracks[index] if index < @current_album.tracks.length
 					playTrack(@current_track, @current_album) if !@current_track.nil? && index < @current_album.tracks.length
 				end
