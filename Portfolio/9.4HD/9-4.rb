@@ -123,69 +123,51 @@ class GameWindow < Gosu::Window
   # we cover Recusion in the lectures.
 
   # But you DO need to complete it later for the Maze Search task
-  def search(cell_x ,cell_y)
-
-    dead_end = false
-    path_found = false
-
-    if (cell_x == ((MAP_WIDTH / CELL_DIM) - 1))
-      if (ARGV.length > 0) # debug
-        puts "End of one path x: " + cell_x.to_s + " y: " + cell_y.to_s
-      end
-      return [[cell_x,cell_y]]  # We are at the east wall - exit
+  def search(cell_x, cell_y)
+    cell = @columns[cell_x][cell_y]
+  
+    # Return path if we reach the eastern boundary
+    if cell_x == ((MAP_WIDTH / CELL_DIM) - 1)
+      return [[cell_x, cell_y]]
+    end
+  
+    # Mark cell as visited
+    cell.visited = true
+  
+    # Store all potential paths
+    paths = []
+  
+    # Explore all possible directions
+    if cell.east && !cell.east.visited && cell.east.vacant
+      east_path = search(cell_x, cell_y + 1)
+      paths << east_path if east_path
+    end
+  
+    if cell.south && !cell.south.visited && cell.south.vacant
+      south_path = search(cell_x + 1, cell_y)
+      paths << south_path if south_path
+    end
+  
+    if cell.west && !cell.west.visited && cell.west.vacant
+      west_path = search(cell_x, cell_y - 1)
+      paths << west_path if west_path
+    end
+  
+    if cell.north && !cell.north.visited && cell.north.vacant
+      north_path = search(cell_x - 1, cell_y)
+      paths << north_path if north_path
+    end
+  
+    # Choose the shortest valid path
+    valid_path = paths.min_by { |p| p.length } if paths.any?
+  
+    if valid_path
+      return [[cell_x, cell_y]] + valid_path
     else
-
-      north_path = nil
-      west_path = nil
-      east_path = nil
-      south_path = nil
-
-      if (ARGV.length > 0) # debug
-        puts "Searching. In cell x: " + cell_x.to_s + " y: " + cell_y.to_s
-      end
-
-      # INSERT MISSING CODE HERE!! You need to have 4 'if' tests to
-      # check each surrounding cell. Make use of the attributes for
-      # cells such as vacant, visited and on_path.
-      # Cells on the outer boundaries will always have a nil on the
-      # boundary side
-      cell = @columns[cell_x][cell_y]
-      cell.visited = true
-      if (cell.east != nil && !cell.east.visited && cell.east.vacant)
-        east_path = search(cell_x, cell_y + 1)
-      elsif (cell.south != nil && !cell.south.visited && cell.south.vacant)
-        south_path = search(cell_x + 1, cell_y)
-      elsif (cell.west != nil && !cell.west.visited && cell.west.vacant)
-        west_path = search(cell_x, cell_y - 1)
-      elsif (cell.north != nil && !cell.north.visited && cell.north.vacant)
-        north_path = search(cell_x - 1, cell_y)
-      end
-
-      # pick one of the possible paths that is not nil (if any):
-      if (north_path != nil)
-        path = north_path
-      elsif (south_path != nil)
-        path = south_path
-      elsif (east_path != nil)
-        path = east_path
-      elsif (west_path != nil)
-        path = west_path
-      end
-
-      # A path was found:
-      if (path != nil)
-        if (ARGV.length > 0) # debug
-          puts "Added x: " + cell_x.to_s + " y: " + cell_y.to_s
-        end
-        return [[cell_x,cell_y]].concat(path)
-      else
-        if (ARGV.length > 0) # debug
-          puts "Dead end x: " + cell_x.to_s + " y: " + cell_y.to_s
-        end
-        nil  # dead end
-      end
+      return nil # Dead end
     end
   end
+  
 
   # Reacts to button press
   # left button marks a cell vacant
